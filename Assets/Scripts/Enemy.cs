@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
     public float minSpeed;
     public float maxSpeed;
     private float speed; //random speed that the enemy uses to move
-    
+
+    public GameObject explosion;
     
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,14 @@ public class Enemy : MonoBehaviour
         {
             //play a sound
             //play a particle system
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
             //destroy the fireball
             Destroy(this.gameObject);
         }
 
         if (other.tag == "Player")
         {
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
             //player to take damage
             GameManager gm = GameManager.instance();
             gm.player.takeDamage(damage);
