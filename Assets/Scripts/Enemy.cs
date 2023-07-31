@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -20,5 +23,26 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         this.transform.Translate(Vector3.down*speed*Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Ground")
+        {
+            //play a sound
+            //play a particle system
+            //destroy the fireball
+            Destroy(this.gameObject);
+        }
+
+        if (other.tag == "Player")
+        {
+            //player to take damage
+            GameManager gm = GameManager.instance();
+            gm.player.takeDamage(damage);
+            //destroy fireball
+            Destroy(this.gameObject);
+        }
+        
     }
 }

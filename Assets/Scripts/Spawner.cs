@@ -20,7 +20,8 @@ public class Spawner : MonoBehaviour
         if (timer >= timeBetweenSpawns)
         {
             //do spawning
-            Vector3 pos = new Vector3(-1,4,0);
+            float x = Random.Range(-7.5f, 7.5f);
+            Vector3 pos = new Vector3(x,6f,0f);
             Instantiate(enemy,pos,Quaternion.identity);
             timer = 0;
         }
